@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxspe48o10ws7"]
+
+[ext_resource type="Script" path="res://scripts/combat/Weapon.gd" id="1_dntkr"]
+[ext_resource type="PackedScene" uid="uid://dyt0i15e06xeg" path="res://scenes/combat/bullet.tscn" id="2_kutok"]
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_dntkr")
+bullet_scene = ExtResource("2_kutok")
+
+[node name="Mesh" type="CSGBox3D" parent="."]
+size = Vector3(0.1, 0.1, 0.5)
+
+[node name="Muzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25776)
+
+[node name="FireRateTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyt0i15e06xeg"]
+
+[ext_resource type="Script" path="res://scripts/combat/Bullet.gd" id="1_sdagx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tam1c"]
+albedo_color = Color(1, 0.054902, 0.0980392, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ncmjt"]
+radius = 0.0516497
+
+[node name="Bullet" type="StaticBody3D"]
+collision_layer = 0
+collision_mask = 15
+script = ExtResource("1_sdagx")
+
+[node name="Mesh" type="CSGSphere3D" parent="."]
+radius = 0.0524353
+material = SubResource("StandardMaterial3D_tam1c")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ncmjt")

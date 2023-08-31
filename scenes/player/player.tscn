@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgqor4makb31n"]
+
+[ext_resource type="Script" path="res://scripts/player/Player.gd" id="1_83fo2"]
+[ext_resource type="PackedScene" uid="uid://dxspe48o10ws7" path="res://scenes/combat/weapon_base.tscn" id="2_a84yo"]
+[ext_resource type="Script" path="res://scripts/player/InteractionRay.gd" id="2_d8wq7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_amymq"]
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_83fo2")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CylinderShape3D_amymq")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+
+[node name="MainCamera" type="Camera3D" parent="Head"]
+
+[node name="Arms" type="Node3D" parent="Head/MainCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="Weapon" parent="Head/MainCamera/Arms" instance=ExtResource("2_a84yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.252, 0, -0.574)
+
+[node name="InteractionRay" type="RayCast3D" parent="Head/MainCamera"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 29
+collide_with_areas = true
+debug_shape_thickness = 1
+script = ExtResource("2_d8wq7")
